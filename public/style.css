@@ -1,0 +1,173 @@
+:root {
+    /* Color Palette */
+    --bg-color: #0f172a;
+    /* Deep Midnight Blue */
+    --card-bg: #1e293b;
+    /* Lighter Blue-Grey */
+    --text-primary: #f8fafc;
+    /* Off-white for reading */
+    --accent-gold: #fbbf24;
+    /* Golden Amber for highlights */
+    --accent-subtle: #94a3b8;
+    /* Muted grey for secondary text */
+
+    /* Spacing */
+    --spacing-md: 2rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: 'Work Sans', sans-serif;
+    /* English font */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1.6;
+}
+
+.ayah-card {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    background-color: var(--card-bg);
+    width: 90%;
+    max-width: 600px;
+    padding: 3rem 2rem;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    /* Deep shadow */
+    border: 10px solid rgba(255, 255, 255, 0.05);
+    /* Thin border highlight */
+
+    /* Smooth fade-in animation */
+    animation: fadeIn 0.8s ease-out;
+}
+.ayah-card::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    /* Puts this BEHIND the card text/background */
+
+    /* Make it larger than the card to create the 'border' thickness */
+    width: 150%;
+    height: 150%;
+    top: -25%;
+    left: -25%;
+
+    /* The Magic Gradient: Gold -> Transparent -> Gold */
+    background: conic-gradient(transparent 0deg,
+            transparent 90deg,
+            var(--accent-gold) 130deg,
+            /* The bright spot */
+            transparent 180deg,
+            transparent 270deg,
+            var(--accent-gold) 310deg
+            /* A second bright spot opposite */
+        );
+
+    /* The Animation */
+    animation: rotate-border 7s linear infinite;
+
+    /* The Glow/Fade Effect - Blurs the light */
+    filter: blur(10px);
+}
+
+/* 3. Ensure the inner background stays dark */
+/* We need a solid background inside to hide the center of the spinning gradient */
+.ayah-card::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    /* Above the spinning border, but behind text */
+    inset: 3px;
+    /* This controls the border thickness (3px gap) */
+    background: var(--card-bg);
+    /* Matches your card color */
+    border-radius: 18px;
+    /* Slightly smaller than main card */
+}
+
+/* 4. The Animation Keyframes */
+@keyframes rotate-border {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.bismillah {
+    width: 150px;
+    margin-bottom: 2rem;
+    filter: invert(1);
+    /* Turns black SVG white to match theme */
+    opacity: 0.8;
+}
+
+.quran-text {
+    font-family: 'Amiri', serif;
+    /* The font we imported */
+    font-size: 2.2rem;
+    line-height: 2.2;
+    /* High line-height prevents Tashkeel overlap */
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+    font-weight: 400;
+}
+
+.ayah-reference {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    color: var(--accent-gold);
+    /* Gold color for reference */
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.btn-refresh {
+    margin-top: 2rem;
+    background: transparent;
+    border: 1px solid var(--accent-gold);
+    color: var(--accent-gold);
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-refresh:hover {
+    background: var(--accent-gold);
+    color: var(--bg-color);
+    /* Inverts text color on hover */
+    transform: translateY(-2px);
+}
+
+/* Simple Animation Keyframe */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
