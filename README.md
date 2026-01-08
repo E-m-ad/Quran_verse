@@ -10,4 +10,4 @@ A serene, focused web application that displays a random **Ayah** (verse) from t
 - **Random Verse Generation:** Fetches a new Ayah instantly using the AlQuran Cloud API.
 - **Bilingual Display:**
   - **Arabic:** Uses the beautiful *Uthmani* script with the 'Amiri' font for readability.
--**For Installation** : Download the Files Put them on Folder => Install Node.js => Open terminal => Open the Direcotry => Run : node index.js.
+# For Installation  : Download the Files Put them on Folder => Install Node.js => Open terminal => Open the Direcotry => Run : node index.js.
